@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Pet Shop - Premium Puppies & Houses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-emerald-500/30">
+                    <i class="fa-solid font-bold fa-paw text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold text-slate-900 tracking-tight leading-none" data-key="brandTitle">SMART PET SHOP</h1>
+                    <p class="text-xs font-semibold text-emerald-600 tracking-wider uppercase mt-1" data-key="brandSub">Addis Ababa, Ethiopia</p>
+                </div>
+            </div>
+
+            <!-- Header Quick Actions & Language Toggle -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Language Toggle Button -->
+                <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-slate-950 px-3.5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm shadow-md transition-all active:scale-95 border border-amber-300">
+                    <i class="fa-solid fa-language text-lg"></i>
+                    <span id="lang-btn-text">አማርኛ</span>
+                </button>
+
+                <a href="tel:0956403474" class="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2.5 rounded-xl font-bold text-sm shadow-md transition-all active:scale-95">
+                    <i class="fa-solid fa-phone"></i>
+                    <span class="hidden sm:inline">0956 40 34 74</span>
+                </a>
+                <a href="https://t.me/smartpetshop01" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-3.5 py-2.5 rounded-xl font-bold text-sm shadow-md transition-all active:scale-95">
+                    <i class="fa-brands fa-telegram text-lg"></i>
+                </a>
+                <a href="https://www.tiktok.com/@smartpetshop01" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2.5 rounded-xl font-bold text-sm shadow-md transition-all active:scale-95">
+                    <i class="fa-brands fa-tiktok text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="max-w-2xl text-center md:text-left">
+                <span class="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4" data-key="topRated">
+                    <i class="fa-solid fa-star text-amber-400"></i> Top Rated Ethiopian Kennel
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4" data-key="heroHeading">
+                    Find Your Perfect Purebred Companion 🐾
+                </h2>
+                <p class="text-slate-300 text-base sm:text-lg mb-6 leading-relaxed" data-key="heroSub">
+                    Healthy German Shepherds, Blue-Eyed Siberian Huskies, American Pitbulls, newborn puppies, and custom-crafted wooden dog houses delivered across Addis Ababa.
+                </p>
+                
+                <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                    <button onclick="saveContact()" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold px-5 py-3 rounded-xl flex items-center gap-2 transition shadow-lg active:scale-95">
+                        <i class="fa-solid fa-address-card"></i>
+                        <span data-key="btnSaveContact">Save Contact Card</span>
+                    </button>
+                    <a href="#dogs-grid" class="bg-white/10 hover:bg-white/20 text-white font-bold px-5 py-3 rounded-xl flex items-center gap-2 backdrop-blur-sm transition border border-white/20">
+                        <i class="fa-solid fa-list-ul"></i>
+                        <span data-key="btnBrowse">Browse Catalog</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Info Cards -->
+            <div class="grid grid-cols-2 gap-3 w-full md:w-auto">
+                <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-center">
+                    <i class="fa-solid fa-shield-heart text-emerald-400 text-2xl mb-1"></i>
+                    <p class="font-black text-xl text-white">100%</p>
+                    <p class="text-xs text-slate-300" data-key="statHealthy">Vaccinated & Healthy</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-center">
+                    <i class="fa-solid fa-truck-fast text-emerald-400 text-2xl mb-1"></i>
+                    <p class="font-black text-xl text-white" data-key="statFast">Fast</p>
+                    <p class="text-xs text-slate-300" data-key="statDelivery">Addis Delivery</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-center col-span-2">
+                    <i class="fa-solid fa-house-chimney-window text-amber-400 text-2xl mb-1"></i>
+                    <p class="font-bold text-sm text-white" data-key="statHouseTitle">Custom Wooden Dog Kennels</p>
+                    <p class="text-xs text-slate-300" data-key="statHouseSub">Built for durability & comfort</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full" id="dogs-grid">
+        
+        <!-- Filter Tabs & Search Bar -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+            <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0 custom-scrollbar" id="filter-container">
+                <button onclick="filterPets('all')" id="btn-filter-all" class="filter-btn active bg-emerald-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap shadow-md transition" data-key="filterAll">
+                    All Pets & Accessories
+                </button>
+                <button onclick="filterPets('german-shepherd')" class="filter-btn bg-white hover:bg-slate-100 text-slate-700 px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap border border-slate-200 transition" data-key="filterGS">
+                    German Shepherds
+                </button>
+                <button onclick="filterPets('husky')" class="filter-btn bg-white hover:bg-slate-100 text-slate-700 px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap border border-slate-200 transition" data-key="filterHusky">
+                    Blue Eyed Huskies
+                </button>
+                <button onclick="filterPets('puppies')" class="filter-btn bg-white hover:bg-slate-100 text-slate-700 px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap border border-slate-200 transition" data-key="filterPuppies">
+                    Newborns & Puppies
+                </button>
+                <button onclick="filterPets('houses')" class="filter-btn bg-white hover:bg-slate-100 text-slate-700 px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap border border-slate-200 transition" data-key="filterHouses">
+                    Dog Houses
+                </button>
+            </div>
+
+            <!-- Search Input -->
+            <div class="relative w-full sm:w-64">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400"></i>
+                <input type="text" id="search-input" oninput="searchPets()" placeholder="Search breed, age..." class="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" data-placeholder="searchPlaceholder">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="pet-cards-container">
+            <!-- Rendered via JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="no-results" class="hidden text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300">
+            <i class="fa-solid fa-paw text-5xl text-slate-300 mb-3"></i>
+            <h3 class="text-lg font-bold text-slate-700" data-key="noResultsTitle">No matching pets found</h3>
+            <p class="text-sm text-slate-500 mt-1" data-key="noResultsSub">Try typing another search word or resetting filters.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white font-bold text-xl">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <span class="text-lg font-extrabold tracking-tight" data-key="brandTitle">SMART PET SHOP</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4" data-key="footerDesc">
+                        Your trusted smart pet provider in Addis Ababa. We breed top quality German Shepherds, Siberian Huskies, Bully breeds, and build premium weatherproof wooden kennels.
+                    </p>
+                    <p class="text-xs text-slate-500">© 2026 Smart Pet Shop Ethiopia. All rights reserved.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-key="footerContactTitle">Direct Contact & Orders</h4>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-emerald-400"></i>
+                            <a href="tel:0956403474" class="hover:text-emerald-400 transition font-medium">0956 40 34 74</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-brands fa-telegram text-sky-400"></i>
+                            <a href="https://t.me/smartpetshop01" target="_blank" class="hover:text-sky-400 transition font-medium">t.me/smartpetshop01</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-brands fa-tiktok text-pink-400"></i>
+                            <a href="https://www.tiktok.com/@smartpetshop01" target="_blank" class="hover:text-pink-400 transition font-medium">@smartpetshop01</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-location-dot text-amber-400"></i>
+                            <span data-key="locationText">Addis Ababa, Ethiopia</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-key="footerSaveTitle">Save Our Contact</h4>
+                    <p class="text-slate-400 text-sm mb-4" data-key="footerSaveDesc">
+                        Save Smart Pet Shop directly to your phone contacts for immediate inquiry and instant updates!
+                    </p>
+                    <button onclick="saveContact()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg transition">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span data-key="btnSaveContact">Save Contact Card</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Details Modal -->
+    <div id="pet-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transform transition-all flex flex-col max-h-[90vh]">
+            <div class="relative bg-slate-100">
+                <img id="modal-img" src="" alt="Pet Details" class="w-full h-72 object-cover" onerror="this.src='Screenshot_20261007-112626_TikTok_5.jpg';">
+                <button onclick="closeModal()" class="absolute top-4 right-4 bg-slate-900/60 hover:bg-slate-900 text-white w-9 h-9 rounded-full flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <span id="modal-badge" class="absolute bottom-4 left-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                    Available
+                </span>
+            </div>
+            
+            <div class="p-6 overflow-y-auto space-y-4">
+                <div>
+                    <h3 id="modal-title" class="text-2xl font-black text-slate-900"></h3>
+                    <p id="modal-subtitle" class="text-sm font-semibold text-emerald-600"></p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-sm text-slate-600 leading-relaxed" id="modal-desc">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-xs font-medium text-slate-600">
+                    <div class="bg-slate-100 p-3 rounded-xl flex items-center gap-2">
+                        <i class="fa-solid fa-check-double text-emerald-500 text-base"></i>
+                        <div>
+                            <p class="text-slate-400 text-[10px] uppercase" data-key="modalStatusLabel">Status</p>
+                            <p class="font-bold text-slate-800" data-key="modalStatusVal">100% Healthy</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-100 p-3 rounded-xl flex items-center gap-2">
+                        <i class="fa-solid fa-location-arrow text-emerald-500 text-base"></i>
+                        <div>
+                            <p class="text-slate-400 text-[10px] uppercase" data-key="modalLocLabel">Location</p>
+                            <p class="font-bold text-slate-800" data-key="locationText">Addis Ababa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2 flex gap-3">
+                    <a id="modal-call-btn" href="tel:0956403474" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-center py-3.5 rounded-xl font-extrabold flex items-center justify-center gap-2 shadow-lg transition active:scale-95">
+                        <i class="fa-solid fa-phone"></i>
+                        <span data-key="btnCallNow">Call 0956 40 34 74</span>
+                    </a>
+                    <a href="https://t.me/smartpetshop01" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white px-5 py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg transition active:scale-95">
+                        <i class="fa-brands fa-telegram text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+        <span id="toast-message" class="text-sm font-semibold">Action completed</span>
+    </div>
+
+    <script>
+        const fallbackImage = 'Screenshot_20261007-112626_TikTok_5.jpg';
+        let currentLang = 'en';
+
+        // Translation Dictionary
+        const translations = {
+            en: {
+                brandTitle: "SMART PET SHOP",
+                brandSub: "Addis Ababa, Ethiopia",
+                topRated: "Top Rated Ethiopian Kennel",
+                heroHeading: "Find Your Perfect Purebred Companion 🐾",
+                heroSub: "Healthy German Shepherds, Blue-Eyed Siberian Huskies, American Pitbulls, newborn puppies, and custom-crafted wooden dog houses delivered across Addis Ababa.",
+                btnSaveContact: "Save Contact Card",
+                btnBrowse: "Browse Catalog",
+                statHealthy: "Vaccinated & Healthy",
+                statFast: "Fast",
+                statDelivery: "Addis Delivery",
+                statHouseTitle: "Custom Wooden Dog Kennels",
+                statHouseSub: "Built for durability & comfort",
+                filterAll: "All Pets & Accessories",
+                filterGS: "German Shepherds",
+                filterHusky: "Blue Eyed Huskies",
+                filterPuppies: "Newborns & Puppies",
+                filterHouses: "Dog Houses",
+                searchPlaceholder: "Search breed, age...",
+                noResultsTitle: "No matching pets found",
+                noResultsSub: "Try typing another search word or resetting filters.",
+                footerDesc: "Your trusted smart pet provider in Addis Ababa. We breed top quality German Shepherds, Siberian Huskies, Bully breeds, and build premium weatherproof wooden kennels.",
+                footerContactTitle: "Direct Contact & Orders",
+                footerSaveTitle: "Save Our Contact",
+                footerSaveDesc: "Save Smart Pet Shop directly to your phone contacts for immediate inquiry and instant updates!",
+                locationText: "Addis Ababa, Ethiopia",
+                modalStatusLabel: "Status",
+                modalStatusVal: "100% Healthy",
+                modalLocLabel: "Location",
+                btnDetails: "Details",
+                btnCallNow: "Call Now",
+                toastContact: "Smart Pet Shop contact card generated!"
+            },
+            am: {
+                brandTitle: "ስማርት ፔት ሾፕ",
+                brandSub: "አዲስ አበባ፡ ኢትዮጵያ",
+                topRated: "በኢትዮጵያ ቀዳሚ የውሻ ማራቢያ",
+                heroHeading: "ተስማሚና ንጹህ ዝርያ ያላቸውን ውሾች እዚህ ያግኙ 🐾",
+                heroSub: "ጤናማ ጀርመን ሼፐርድ፣ ሰማያዊ ዓይን ያላቸው ሁስኪዎች፣ ፒትቡሎች፣ አዲስ የተወለዱ ቡችሎች እና ዘመናዊ የእንጨት የውሻ ቤቶች በአዲስ አበባ ያግኙ።",
+                btnSaveContact: "ስልክ ቁጥር መዝግብ",
+                btnBrowse: "ዝርዝር ይመልከቱ",
+                statHealthy: "የተከተቡና ጤናማ",
+                statFast: "ፈጣን",
+                statDelivery: "አዲስ አበባ ማድረስ",
+                statHouseTitle: "የእንጨት የውሻ ቤቶች",
+                statHouseSub: "ለጥንካሬና ለምቾት የተሰሩ",
+                filterAll: "ሁሉንም ውሾችና ዕቃዎች",
+                filterGS: "ጀርመን ሼፐርድ",
+                filterHusky: "ሰማያዊ ዓይን ሁስኪ",
+                filterPuppies: "አዲስ የተወለዱ ቡችሎች",
+                filterHouses: "የውሻ ቤቶች",
+                searchPlaceholder: "ውሻ ወይም ዕድሜ ይፈልጉ...",
+                noResultsTitle: "ምንም የተገኘ ውሻ የለም",
+                noResultsSub: "እባክዎ ሌላ የፍለጋ ቃል ይፃፉ ወይም ማጣሪያውን ይቀይሩ።",
+                footerDesc: "በአዲስ አበባ አስተማማኝ የውሻ አራቢና አቅራቢ። ንጹህ ዝርያ ያላቸው ጀርመን ሼፐርዶች፣ ሁስኪዎች፣ ፒትቡሎች እና ጥራት ያላቸው የእንጨት ቤቶች እናዘጋጃለን።",
+                footerContactTitle: "ቀጥታ ለማዘዝ",
+                footerSaveTitle: "አድራሻችንን ያስቀምጡ",
+                footerSaveDesc: "ስማርት ፔት ሾፕን በስልክዎ መዝግበው በማንኛውም ጊዜ በፍጥነት ያግኙን!",
+                locationText: "አዲስ አበባ፡ ኢትዮጵያ",
+                modalStatusLabel: "ሁኔታ",
+                modalStatusVal: "100% ጤናማ",
+                modalLocLabel: "ቦታ",
+                btnDetails: "ዝርዝር",
+                btnCallNow: "አሁኑኑ ይደውሉ",
+                toastContact: "የስማርት ፔት ሾፕ ስልክ አድራሻ ተዘጋጅቷል!"
+            }
+        };
+
+        const petCatalog = [
+            {
+                id: 'gs-puppy-fluffy',
+                category: 'german-shepherd',
+                subCategory: 'puppies',
+                title: { en: 'Fluffy German Shepherd Puppy', am: 'ፍላፊ ጀርመን ሼፐርድ ቡችላ' },
+                subtitle: { en: 'Super Dense Coat • Big-Boned Breed', am: 'ወፍራም ፀጉር • ትልቅ አጥንት ያለው' },
+                description: { 
+                    en: 'Extremely healthy, big-boned fluffy long-coat German Shepherd puppy raised with ultimate care at Smart Pet Shop. Active, alert, and great personality.',
+                    am: 'በስማርት ፔት ሾፕ በጥንቃቄ ያደገ በጣም ጤናማ፣ ትልቅ አጥንትና ረጅም ፀጉር ያለው ጀርመን ሼፐርድ ቡችላ። ንቁ እና ተጫዋች።'
+                },
+                image: 'Screenshot_20261007-112626_TikTok_5.jpg',
+                badge: { en: 'Popular', am: 'ተወዳጅ' },
+                age: { en: '2 Months', am: '2 ወር' }
+            },
+            {
+                id: 'husky-mother-newborn',
+                category: 'husky',
+                subCategory: 'puppies',
+                title: { en: 'Siberian Husky & Newborn Puppy', am: 'ሳይቤሪያን ሁስኪ እና አዲስ የተወለደ ቡችላ' },
+                subtitle: { en: 'Blue Eyes Mother • Purebred Newborn', am: 'ሰማያዊ ዓይን እናት • ንጹህ ዝርያ' },
+                description: { 
+                    en: 'Purebred adult Siberian Husky mother with bright ice-blue eyes caring for her newly born puppy. Smart Pet Shop nursery breed.',
+                    am: 'አዲስ የተወለደ ቡችላዋን የምትንከባከብ ሰማያዊ ዓይን ያላት ንጹህ ሳይቤሪያን ሁስኪ እናት።'
+                },
+                image: 'Screenshot_20261007-112607_TikTok_5.jpg',
+                badge: { en: 'Newborn', am: 'አዲስ የተወለደ' },
+                age: { en: 'Newborn', am: 'አዲስ የተወለደ' }
+            },
+            {
+                id: 'gs-wooden-house',
+                category: 'houses',
+                subCategory: 'houses',
+                title: { en: 'Wooden Dog Kennel & Gate', am: 'የእንጨት የውሻ ቤት ከበሩ ጋር' },
+                subtitle: { en: 'Custom Weatherproof Design with Turf Lawn', am: 'ከዝናብና ፀሐይ የሚከላከል ጥራት ያለው ቤት' },
+                description: { 
+                    en: 'Premium handcrafted wooden dog house featuring a green weather-resistant roof, elevated artificial turf porch, and sturdy wooden gate.',
+                    am: 'ከዝናብ የሚከላከል ጣሪያና አርቲፊሻል ሳር ያለው፣ በጥራት በእጅ የተሰራ ዘመናዊ የእንጨት የውሻ ቤት።'
+                },
+                image: 'Screenshot_20261007-112509_TikTok_5.jpg',
+                badge: { en: 'Custom Order', am: 'በትዕዛዝ የሚሰራ' },
+                age: { en: 'New Build', am: 'አዲስ የተሰራ' }
+            },
+            {
+                id: 'gs-trunk-sedan',
+                category: 'german-shepherd',
+                subCategory: 'puppies',
+                title: { en: 'German Shepherd Junior', am: 'ጀርመን ሼፐርድ ውሻ' },
+                subtitle: { en: 'Smart • Guard & Companion', am: 'ጎበዝ • ለጥበቃና ለቤት የሚሆን' },
+                description: { 
+                    en: 'Strong, attentive young German Shepherd with standard tan and black coat markings. Great for family protection in Addis Ababa.',
+                    am: 'ለጥበቃና ለቤት ፍፁም ተስማሚ የሆነ ንቁ እና ታዛዥ የጀርመን ሼፐርድ ውሻ።'
+                },
+                image: 'Screenshot_20261007-112443_TikTok_5.jpg',
+                badge: { en: 'Ready To Go', am: 'ዝግጁ' },
+                age: { en: '4 Months', am: '4 ወር' }
+            },
+            {
+                id: 'fluffy-nursing-puppies',
+                category: 'puppies',
+                subCategory: 'puppies',
+                title: { en: 'Fluffy Nursing Puppies', am: 'ነጭ አዲስ የተወለዱ ቡችሎች' },
+                subtitle: { en: 'Soft White & Cream Coat Puppies', am: 'ለስላሳ ነጭና ክሬም ከለር ቡችሎች' },
+                description: { 
+                    en: 'Adorable fuzzy pups nursing with mother. Extremely soft coats, healthy weight, ready for booking at Smart Pet Shop.',
+                    am: 'በጣም ለስላሳ ፀጉር ያላቸው፣ ጤናማና ደስ የሚሉ ቡችሎች። ለማስያዝ ዝግጁ ናቸው።'
+                },
+                image: 'Screenshot_20261007-112405_TikTok_5.jpg',
+                badge: { en: 'Booking Open', am: 'ማስያዝ ይቻላል' },
+                age: { en: '3 Weeks', am: '3 ሳምንት' }
+            },
+            {
+                id: 'husky-blue-eyes-1',
+                category: 'husky',
+                subCategory: 'puppies',
+                title: { en: 'Blue Eyed Siberian Husky Puppy', am: 'ሰማያዊ ዓይን ያለው ሁስኪ ቡችላ' },
+                subtitle: { en: 'Vibrant Ice Blue Eyes • Playful', am: 'የሚያምር ሰማያዊ ዓይን • ተጫዋች' },
+                description: { 
+                    en: 'Stunning bright blue-eyed Siberian Husky puppy. Purebred, energetic, healthy coat pattern, fully vaccinated.',
+                    am: 'ደማቅ ሰማያዊ ዓይን ያለው አሪፍ የሳይቤሪያን ሁስኪ ቡችላ። ሙሉ በሙሉ የተከተበና ጤናማ።'
+                },
+                image: 'Screenshot_20261007-112340_TikTok_5.jpg',
+                badge: { en: 'Featured', am: 'ልዩ' },
+                age: { en: '6 Weeks', am: '6 ሳምንት' }
+            },
+            {
+                id: 'husky-blue-eyes-2',
+                category: 'husky',
+                subCategory: 'puppies',
+                title: { en: 'Siberian Husky Blue Eye Profile', am: 'የሳይቤሪያን ሁስኪ ቡችላ' },
+                subtitle: { en: 'Deep Blue Eyes • Active Puppy', am: 'ሰማያዊ ዓይን ያለው ንቁ ውሻ' },
+                description: { 
+                    en: 'Close-up look at our active blue-eyed Siberian Husky puppy showing healthy stance and distinct coat markings.',
+                    am: 'ቆንጆና ንቁ የሆነ ሰማያዊ ዓይን ያለው የሁስኪ ቡችላ።'
+                },
+                image: 'Screenshot_20261007-112319_TikTok_5.jpg',
+                badge: { en: 'Top Pick', am: 'ምርጥ' },
+                age: { en: '6 Weeks', am: '6 ሳምንት' }
+            },
+            {
+                id: 'american-bully-pitbull',
+                category: 'puppies',
+                subCategory: 'puppies',
+                title: { en: 'American Bully / Pitbull Guard', am: 'አሜሪካን ቡሊ / ፒትቡል ጥበቃ' },
+                subtitle: { en: 'Muscular • Strong Lineage', am: 'ኃይለኛና የጠነከረ ሰውነት ያለው' },
+                description: { 
+                    en: 'Muscular blue/grey coat American Bully dog next to custom kennel enclosure at Smart Pet Shop Addis Ababa.',
+                    am: 'ለጥበቃ የሚሆን ጠንካራ አሜሪካን ቡሊ ውሻ በስማርት ፔት ሾፕ።'
+                },
+                image: 'Screenshot_20261007-112227_TikTok.jpg',
+                badge: { en: 'Guard Dog', am: 'ለጥበቃ' },
+                age: { en: '1 Year', am: '1 ዓመት' }
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        // Core Renderer: Automatic search fallback to 'all' if query exists
+        function renderPets() {
+            const container = document.getElementById('pet-cards-container');
+            const noResults = document.getElementById('no-results');
+            const searchQuery = document.getElementById('search-input').value.trim().toLowerCase();
+            container.innerHTML = '';
+
+            const filtered = petCatalog.filter(item => {
+                const titleEn = item.title.en.toLowerCase();
+                const titleAm = item.title.am.toLowerCase();
+                const subEn = item.subtitle.en.toLowerCase();
+                const subAm = item.subtitle.am.toLowerCase();
+                const descEn = item.description.en.toLowerCase();
+                const descAm = item.description.am.toLowerCase();
+
+                const matchesSearch = searchQuery === '' || 
+                                      titleEn.includes(searchQuery) || titleAm.includes(searchQuery) ||
+                                      subEn.includes(searchQuery) || subAm.includes(searchQuery) ||
+                                      descEn.includes(searchQuery) || descAm.includes(searchQuery);
+
+                // If user is searching, bypass the tab restriction so they see all matches
+                if (searchQuery !== '') {
+                    return matchesSearch;
+                }
+
+                // If not searching, filter strictly by selected category tab
+                const matchesCategory = currentFilter === 'all' || item.category === currentFilter || item.subCategory === currentFilter;
+                return matchesCategory;
+            });
+
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            filtered.forEach(pet => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group";
+                
+                const titleText = pet.title[currentLang];
+                const subText = pet.subtitle[currentLang];
+                const descText = pet.description[currentLang];
+                const badgeText = pet.badge[currentLang];
+                const ageText = pet.age[currentLang];
+                const btnDetailsText = translations[currentLang].btnDetails;
+                const btnCallText = translations[currentLang].btnCallNow;
+
+                card.innerHTML = `
+                    <div class="relative overflow-hidden aspect-[4/5] bg-slate-100">
+                        <img src="${pet.image}" 
+                             onerror="this.onerror=null; this.src='${fallbackImage}';" 
+                             alt="${titleText}" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span class="bg-slate-900/80 backdrop-blur-md text-white text-xs font-extrabold px-3 py-1 rounded-full">
+                                ${badgeText}
+                            </span>
+                        </div>
+                        <div class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md text-slate-800 text-xs font-bold px-2.5 py-1 rounded-lg shadow">
+                            <i class="fa-solid fa-clock text-emerald-600 mr-1"></i>${ageText}
+                        </div>
+                    </div>
+                    
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-900 group-hover:text-emerald-600 transition-colors leading-tight">
+                                ${titleText}
+                            </h3>
+                            <p class="text-xs font-bold text-emerald-600 uppercase tracking-wide mt-1">
+                                ${subText}
+                            </p>
+                            <p class="text-slate-600 text-sm mt-2 line-clamp-2 leading-relaxed">
+                                ${descText}
+                            </p>
+                        </div>
+
+                        <div class="mt-5 pt-4 border-t border-slate-100 flex items-center gap-2">
+                            <button onclick="openModal('${pet.id}')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2.5 px-3 rounded-xl text-sm transition flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-circle-info text-slate-500"></i>
+                                <span>${btnDetailsText}</span>
+                            </button>
+                            <a href="tel:0956403474" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-sm transition text-center shadow-md shadow-emerald-600/20 flex items-center justify-center gap-1.5 active:scale-95">
+                                <i class="fa-solid fa-phone"></i>
+                                <span>${btnCallText}</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterPets(category) {
+            currentFilter = category;
+            
+            // Clear search when clicking a tab to return to clean filtered view
+            document.getElementById('search-input').value = '';
+
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.className = "filter-btn bg-white hover:bg-slate-100 text-slate-700 px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap border border-slate-200 transition";
+            });
+            event.currentTarget.className = "filter-btn active bg-emerald-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap shadow-md transition";
+
+            renderPets();
+        }
+
+        function searchPets() {
+            // When user types, automatically highlight "All Pets" tab visual indicator if search is non-empty
+            const searchQuery = document.getElementById('search-input').value.trim();
+            if (searchQuery !== '') {
+                const buttons = document.querySelectorAll('.filter-btn');
+                buttons.forEach(btn => {
+                    btn.className = "filter-btn bg-white hover:bg-slate-100 text-slate-700 px-5 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap border border-slate-200 transition";
+                });
+                document.getElementById('btn-filter-all').className = "filter-btn active bg-emerald-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap shadow-md transition";
+            }
+            renderPets();
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'am' : 'en';
+            document.getElementById('lang-btn-text').innerText = currentLang === 'en' ? 'አማርኛ' : 'English';
+            updateStaticText();
+            renderPets();
+        }
+
+        function updateStaticText() {
+            const langData = translations[currentLang];
+            
+            document.querySelectorAll('[data-key]').forEach(elem => {
+                const key = elem.getAttribute('data-key');
+                if (langData[key]) {
+                    elem.innerText = langData[key];
+                }
+            });
+
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.placeholder = langData.searchPlaceholder;
+            }
+        }
+
+        function openModal(petId) {
+            const pet = petCatalog.find(p => p.id === petId);
+            if (!pet) return;
+
+            document.getElementById('modal-img').src = pet.image;
+            document.getElementById('modal-title').innerText = pet.title[currentLang];
+            document.getElementById('modal-subtitle').innerText = pet.subtitle[currentLang];
+            document.getElementById('modal-desc').innerText = pet.description[currentLang];
+            document.getElementById('modal-badge').innerText = pet.badge[currentLang] + " • " + pet.age[currentLang];
+
+            document.getElementById('pet-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('pet-modal').classList.add('hidden');
+        }
+
+        function saveContact() {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Smart Pet Shop Ethiopia
+TEL;TYPE=CELL:0956403474
+NOTE:Smart Pet Shop - Premium Puppies, Huskies, German Shepherds & Dog Houses in Addis Ababa.
+URL:https://www.tiktok.com/@smartpetshop01
+END:VCARD`;
+
+            const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'SmartPetShop_Contact.vcf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showToast(translations[currentLang].toastContact);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        window.onload = function() {
+            updateStaticText();
+            renderPets();
+        }
+    </script>
+</body>
+</html>
